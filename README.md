@@ -1,6 +1,83 @@
 # Java_Templates
 Шаблоны
 
+## Switch
+```
+int day = 2;
+
+switch (day) {
+    
+    case 1:
+        System.out.println("Monday");
+        break;
+
+    case 2:
+        System.out.println("Tuesday");
+        break;
+
+    case 3:
+        System.out.println("Wednesday");
+        break;
+
+    default:
+        System.out.println("Wrong day's number");
+}
+```
+
+
+
+## Очерёдность действий в логических выражениях
+1. Сначала выполняются действия в круглых скобках.
+
+2. Затем выполняются операции логического отрицания (!)
+
+3. Далее выполняются операции логического И (&&)
+
+4. В последнюю очередь выполняются операции логического ИЛИ (||).
+
+[Таблица истинности](https://ru.wikipedia.org/wiki/Таблица_истинности)
+
+## Инкремент и декремент.
+Инкремент ++
+Декремент --
+
+Postfix x++ - позже делает.
+
+Prefix ++x  - сейчас делает.
+
+## System.out.printf  или  String.format
+**%d**	Задается целое число (int. byte, short, int, long, BigInteger)
+```
+String.format("Мне уже %d!",20)
+```
+**%s**	Любой тип, который будет приведен к строке
+```
+String.format("Привет %s!","мир")
+```
+[Полная таблица](https://javarush.com/groups/posts/1412-formatiruem-vihvod-chisel-v-java)
+
+## Символьная таблица юников(Unicode)
+
+
+## Тернарный оператор
+
+```
+int x = 24;
+
+if (x % 2 == 0) {
+    System.out.println("Число чётное");
+} else {
+    System.out.println("Число нечётное");
+}
+```
+
+тернарный
+```
+int x = 15;
+
+System.out.println((x % 2 == 0) ? "Число чётное" : "Число нечётное");
+```
+
 ## Строки
 Срез split
 ```
@@ -17,6 +94,70 @@ class Main {
 // stepik
 ```
 
+ **Методы** 
+String concat(String s) (аналог «+») — слияние строк;
+boolean equals(Object ob) — сравнение строк с учетом регистра;
+boolean equalsIgnoreCase(String s) — сравнение строк без учета регистра;
+int compareTo(String s) и compareToIgnoreCase(String s) — лексикографическое сравнение строк с учетом и без учета их регистра. Метод осуществляет вычитание кодов первых различных символов вызывающей и передаваемой в метод строки и возвращает целое значение. Метод возвращает значение нуль в случае, когда equals() возвращает значение true;
+boolean contentEquals(StringBuffer ob) — сравнение строки и содержимого объекта типа StringBuffer;
+String substring(int n, int m) — извлечение из строки подстроки начиная с индекса n и заканчивая индексом m (не включая). Нумерация символов в строке начинается с нуля;
+String substring(int n) — извлечение из строки подстроки, начиная с позиции n до конца строки;
+int length() — определение длины строки;
+int indexOf(char ch)— определение позиции символа  в строке. Возвращает индекс первого появления символа, либо -1, если символ не обнаружен. Аналогично перегруженный метод int indexOf(String str)  поиска индекса начала подстроки str.
+int indexOf(char ch, int n), int indexOf(String str, int n) — определение позиции символа  или подстроки, поиск вправо начинается с позиции n. Возвращает -1, если символ/подстрока не обнаружен;
+int lastIndexOf(char ch), int lastIndexOf(String str) — определение последней позиции символа или подстроки. Возвращает -1, если символ/подстрока не обнаружен;
+int lastIndexOf(char ch, int n), int lastIndexOf(String str, int n) — определение позиции символа  или подстроки, поиск влево начинается с позиции n. Возвращает -1, если символ/подстрока не обнаружен;
+String toUpperCase()/toLowerCase() — преобразование всех символов вызывающей строки в верхний/нижний регистр;
+String replace(char с1, char с2) — замена в строке всех вхождений первого символа вторым символом. Есть перегрузка этого метода для замены одной подстроки другой:: String replace(String str1, String str2)
+String intern() — заносит строку в «пул» литералов и возвращает ее объектную ссылку. Пример использования этого метода показан далее.
+String trim() — удаление всех пробелов в начале и конце строки;
+char charAt(int position) — возвращение символа из указанной позиции (нумерация с нуля);
+boolean isEmpty() — возвращает true, если длина строки равна 0 (пустая строка);
+void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) — извлечение символов строки от символа с индексом srcBegin до символа с индексом srcEnd  (не включая) в массив символов dst , размещение в котором начинается с индекса dstBegin;
+String[] split(String regex) — поиск вхождения в строку заданного регулярного выражения (разделителя) и деление исходной строки в соответствии с этим на массив строк.
+String[] split(String regex, int limit) — деление исходной строки на массив строк, используя разделитель regex (регулярное выражение). Параметр limit означает максимальное количество строк, которое должно быть получено.
+Поскольку литерал является объектом класса String, от его имени можно вызывать все эти методы. 
+
+System.out.println("abc".length()); //будет выведено 3
+**Примеры вызовов**
+```
+import java.util.Scanner;
+public class Runner10 {
+    public static void main(String[] args) {
+        String sample="   Testing strings   ";
+        sample = sample.trim(); //удаление пробелов в начале и в конце
+        System.out.println("|"+sample+"|");
+        System.out.println(sample.charAt(3)); //символ с индексом 3 - это t
+        System.out.println(sample.charAt(sample.length() - 1)); //последний символ - это s
+        String sub = sample.substring(3, 7); //выделение подстроки ting
+        System.out.println(sub);
+        String changed = sample.replace('s', 'z'); //замена символов s на z
+        System.out.println(changed);
+        changed = changed.replace("z", ""); //удаление символов z
+        System.out.println(changed);
+        int findFirst = sample.indexOf('i'); //поиск символа с начала строки
+        System.out.println(findFirst); //выводит 4
+        int findLast = sample.lastIndexOf('i'); //поиск символа с конца строки
+        System.out.println(findLast); //выводит 11
+    }
+}
+```
+**Сравнение строк**
+```
+public class Example2 {
+    public static void main(String[] args) {
+        String s1 = "Ivan";
+        String s2 = "Ivan";
+        String s3 = new String("Ivan");
+        String s4 = new String(s1);
+        System.out.println(s1 == s2); // true
+        System.out.println(s3 == s4); // false
+        System.out.println(s1 == s3); // false
+        System.out.println(s1.equals(s2)); //true
+        System.out.println(s1.equals(s3)); // true
+    }
+}
+```
 
 ## Массивы
 
