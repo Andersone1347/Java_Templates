@@ -57,7 +57,7 @@ String.format("Привет %s!","мир")
 [Полная таблица](https://javarush.com/groups/posts/1412-formatiruem-vihvod-chisel-v-java)
 
 ## Символьная таблица юников(Unicode)
-
+[юникод](https://en.wikipedia.org/wiki/List_of_Unicode_characters)
 
 ## Тернарный оператор
 
