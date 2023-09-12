@@ -1,6 +1,143 @@
 # Java_Templates
 Шаблоны
 
+## Вложенные for
+```
+String s = "Java";
+
+for (int i = 0; i < s.length(); i++) {
+    if (i % 2 == 0) {
+        for (int j = 0; j < 5; j ++) {
+            System.out.print(s.charAt(i));
+        } 
+    } else {
+        for (int j = 0; j < 3; j ++) {
+            System.out.print(s.charAt(i));
+        } 
+    }
+    System.out.println();    // Перевод строки
+}
+
+/*
+JJJJJ
+aaa
+vvvvv
+aaa
+*/
+```
+
+
+## for
+```
+for (int i = 5; i < 10; i += 2) {
+    System.out.print(i + " "); // 5 7 9
+}
+
+for (int i = 5; i > -1; i--) {
+    System.out.print(i + " "); // 5 4 3 2 1 0
+}
+
+for (int i = 1; i < 10;) {
+    System.out.print(i + " "); // Бесконечный цикл
+}
+
+```
+
+
+## While
+просто пример
+```
+int x = 3;
+
+while (x > 0) {
+    System.out.println(x);
+    x--;
+}
+```
+
+со сканером
+```
+import java.util.Scanner;
+
+class MyNumber {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = 1;
+        while (b <= a){
+            System.out.println(b);
+            b++;
+        }
+    }
+}
+```
+квадраты
+```
+import java.util.Scanner;
+class Kol {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int i = 1;
+        int rezult = 1;
+        while (rezult <= a){
+            i++;
+            System.out.print(rezult+" ");
+            rezult = (int) Math.pow(i,2);
+        }
+    }
+        }
+```
+
+## do while
+```
+int x = 1;
+do {
+    System.out.println(x);
+    x++;
+} while (x < 5);
+
+/*
+1
+2
+3
+4
+*/
+```
+Одна итерация гарантированно произойдёт, даже если условие ложно.
+```
+int x = 1;
+do {
+    System.out.println(x);
+    x++;
+} while (x < 0);
+```
+// 1
+**Break и continue**
+```
+int x = 0;
+
+while (true) {
+    x++;
+    if (x % 2 == 0) {
+        continue;
+    } 
+    System.out.println(x);
+    if (x == 5) {
+        break;
+    }
+}
+System.out.println("The end");
+```
+/*
+1
+3
+5
+The end
+*/
+
+
+
 ## Switch
 ```
 int day = 2;
@@ -22,6 +159,48 @@ switch (day) {
     default:
         System.out.println("Wrong day's number");
 }
+```
+
+## Math
+
+**Math.abs**
+```
+int x = -325;
+int y = Math.abs(x);
+
+System.out.println(y); // 325
+```
+**Math.pow(5, 2)**
+```
+int x = 5, y = 2;
+double z;
+z = Math.pow(5, 2);
+
+System.out.println(z);    // 25.0
+```
+**Math.round(x)**
+округление
+```
+double x = 25.364789;
+System.out.println(Math.round(x));    // 25
+```
+**Math.ceil(x)**
+до большего 
+```
+double x1 = 25.364789;
+System.out.println(Math.ceil(x1));    // 26.0
+
+double x2 = -25.364789;
+System.out.println(Math.ceil(x2));    // -25.0
+```
+**Math.floor(x)**
+до меньшего
+```
+double x1 = 25.364789;
+System.out.println(Math.floor(x1));    // 25.0
+
+double x2 = -25.364789;
+System.out.println(Math.floor(x2));    // -26.0
 ```
 
 
@@ -161,6 +340,122 @@ public class Example2 {
 
 ## Массивы
 
+### Методы в массиве
+Для работы с массивами в java есть специальный класс Arrays. Вот некоторые полезные методы, которые он предоставляет. 
+
+Вначале класс нужно импортировать (так же, как мы импортируем java.util.Scanner):
+
+import java.util.Arrays;
+И не забываем про точку с запятой в конце)
+
+1. Arrays.toString(). 
+
+Метод преобразует массив в строку. Полезен, прежде всего, для вывода массива на печать. Если попытаться напечатать массив напрямую, то мы получим вместо массива его шестнадцатеричный хеш-код:
+
+int[] array = {1, 2, 3, 4, 5}; 
+System.out.println(array);       // [I@b800 - этот хеш-код будет изменяться при каждом запуске
+Поэтому, для начала, массив нужно преобразовать в строку:
+
+int[] array = {1, 2, 3, 4, 5}; 
+System.out.println(Arrays.toString(array));       // [1, 2, 3, 4, 5]
+2. Arrays.sort().
+
+Этот метод сортирует массив или его часть.
+
+int[] array = {5, 10, 15, 4, 1};
+
+Arrays.sort(array);
+System.out.println(Arrays.toString(array)); // [1, 4, 5, 10, 15]
+Можно отсортировать только часть массива, указав начальный и конечный индексы при вызове метода:
+
+int[] array = {5, 10, 15, 4, 1, 7, 23, 8, 11, 42};
+Arrays.sort(array, 3, 7);
+System.out.println(Arrays.toString(array));    // [5, 10, 15, 1, 4, 7, 23, 8, 11, 42]
+В этом примере мы отсортировали только элементы массива с индексами от 3 до 6 (правая граница не входит в отрезок сортировки).
+
+Обратите внимание: метод ничего не возвращает, а сортирует массив "на месте". Если попытаться присвоить результат работы метода какой-нибудь переменной, компилятор выдаст ошибку.
+
+Можно сортировать и массивы из строк. В этом случае, сортировка производится в лексикографическом порядке.  
+
+String[] array = {"one", "two", "three", "four"};
+Arrays.sort(array);
+System.out.println(Arrays.toString(array));    // [four, one, three, two]
+ 
+
+3. Arrays.equals()
+
+Этот метод сравнивает два массива и возвращает true, если они равны, и false - в обратном случае.
+
+int[] numbers1 = {1, 2, 3};
+int[] numbers2 = {1, 2, 3};
+
+System.out.println(Arrays.equals(numbers1, numbers2));    // true
+
+int[] numbers3 = {1, 2, 3, 4};
+
+boolean result = Arrays.equals(numbers1, numbers3);
+System.out.println(result);    // false
+
+Особое внимание необходимо обратить, что сравнивать массивы необходимо именно с помощью статического метода класса, а не так, как мы сравнивали строки (с помощью метода экземпляра).
+
+int[] numbers1 = {1, 2, 3};
+int[] numbers2 = {1, 2, 3};
+
+System.out.println(number1.equals(numbers2));    // false
+Так происходит потому, что массив является ссылочным типом данных, то есть, переменная содержит не сами данные, а только ссылку на них. В этом случае Java сравнивает между собой не данные, а ссылки на объекты. Поскольку объекты разные, то и результат сравнения получается false. 
+
+ 
+
+4. Arrays.copyOf()
+
+Метод возвращает копию массива. Метод получает в качестве аргументов массив, который нужно скопировать, и число элементов, которые нужно скопировать. Отсчёт ведётся с первого элемента массива.
+
+int[] numbers1 = {1, 2, 3, 4, 5};
+int[] numbers2 = Arrays.copyOf(numbers1, 5);
+
+System.out.println(Arrays.toString(numbers2));    // [1, 2, 3, 4, 5]
+
+
+int[] numbers3 = Arrays.copyOf(numbers1, 3);
+
+System.out.println(Arrays.toString(numbers3));    // [1, 2, 3]
+
+
+Если нужно скопировать весь массив, можно передать в качестве аргумента его длину:
+
+int[] numbers1 = {1, 2, 3, 4, 5};
+int[] numbers2 = Arrays.copyOf(numbers1, numbers1.length);
+
+System.out.println(Arrays.toString(numbers2));    // [1, 2, 3, 4, 5]
+Важно понимать разницу между приравниванием массивов друг другу и копированием:
+
+int[] numbers1 = {1, 2, 3, 4, 5};
+int[] numbers2 = numbers1;
+int[] numbers3 = Arrays.copyOf(numbers1, numbers1.length);
+
+numbers1[3] = 1000;
+
+System.out.println(Arrays.toString(numbers2));    // [1, 2, 3, 1000, 5]
+
+System.out.println(Arrays.toString(numbers3));    // [1, 2, 3, 4, 5]
+
+​
+Так получается потому, что numbers1 и numbers2 ссылаются на один и тот же объект, а numbers1 и numbers3 - на разные. 
+
+Таким образом, метод Arrays.copyOf() создаёт новый, независимый от оригинального, массив.
+
+ 
+
+5. Arrays.copyOfRange()
+
+Если нужно скопировать не массив целиком, а только его кусок, подойдёт метод Arrays.copyOfRange(). Этот метод получает на вход массив, а также стартовый и конечный индексы "куска", который нужно скопировать:
+
+int[] numbers1 = {2, 4, 6, 8, 10, 12, 14, 16};
+
+int [] numbers2 = Arrays.copyOfRange(numbers1, 2, 5);
+System.out.println(Arrays.toString(numbers2));    // [6, 8, 10]
+Мы получили новый массив, вырезанный из первоначального, включая начальный индекс (2), но не включая конечный.
+
 ### Одномерные
 int a[]; //синтаксис пришел из С
 //можно и так:
@@ -297,9 +592,13 @@ for (int i = 0; i < b.length; i++){ //b.length равно 3
 0    0    0    0    
 0    0    0 
 
+
+
+
 **Пример**. Пользователь вводит количество строк и столбцов двумерного массива, а затем начальное значение генератора случайных чисел. Создать целочисленный массив указанной размерности и инициализировать его случайными числами от 0 до 20. Массив вывести на консоль в виде таблицы, элементы которой отделяются знаками табуляции. 
 
 Найти среднее арифметическое элементов массива и подсчитать количество элементов, меньших этого среднего. Вывести с новой строки среднее арифметическое (округленное до 2-х знаков после десятичной точки) и, через пробел, найденное количество.
+
 ```
 import java.util.Random;
 import java.util.Scanner;
