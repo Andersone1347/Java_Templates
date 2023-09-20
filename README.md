@@ -896,4 +896,4 @@ System.out.println(Arrays.toString(d));
 С остальными методами класса Arrays рекомендую познакомиться в официальной документации по Java:  [vot](https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html)
 
 
-lol
+lol  
