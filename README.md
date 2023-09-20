@@ -894,3 +894,6 @@ System.out.println(Arrays.toString(d));
 [25, 6, 17, -1]
 ```
 С остальными методами класса Arrays рекомендую познакомиться в официальной документации по Java:  [vot](https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html)
+
+
+lol
